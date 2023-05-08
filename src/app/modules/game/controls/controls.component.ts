@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Directions } from 'src/app/interfaces/enums/directions.enum';
 import { types } from 'src/app/interfaces/enums/types.enum';
@@ -12,13 +13,15 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class ControlsComponent implements OnDestroy, OnInit {
 
-  //TODO poner la logica del gameover fuera de este componente
+  //TODO gran parte de toda esta lógica del juego debería estar en el componente game para mejorar la estructura y el orden
 
   public game! : Game;
   private gameSubscription!: Subscription;
 
   constructor(
     private gameService: GameService,
+    private router: Router,
+
     ){
       this.gameSubscription = this.gameService.game$.subscribe((game) =>{
         this.game = game;
@@ -175,7 +178,7 @@ export class ControlsComponent implements OnDestroy, OnInit {
     this.gameService.emitGame(this.game);
   }
 
-monsterKilled(){
+  monsterKilled(){
     this.game.monsterDeath = true;
     let row: number = this.game.monsterPosition.row;
     let col: number = this.game.monsterPosition.col;
@@ -196,6 +199,27 @@ monsterKilled(){
     }
     
     this.game.gameMessage = "You killed the Wumpus!"
+  }
+
+  gameOver(){
+    let reset = {
+      cells           : 4, 
+      holes           : 2,
+      arrows          : 1,
+      board           : [],
+      heroDirection   : Directions.UP,
+      totalMoves      : 0,
+      hasGold         : false,
+      monsterDeath    : false,
+      playerWin       : false,
+      heroDeath       : false,
+      score           : 0,
+      heroPosition    : {row: 0, col: 0},
+      monsterPosition : {row: 0, col: 0},
+      gameMessage     : ""
+    }
+    this.gameService.setGame(reset)
+    this.router.navigate(["start"]);
   }
 
   ngOnDestroy(): void {
