@@ -1,0 +1,32 @@
+#controls{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 50px;
+    .buttons-container{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+    button{
+        font-size: 13px;
+        min-width: 105px;
+        text-transform: uppercase;
+        padding: 10px 15px 5px;
+        border: 2px solid #221A0D;
+        border-radius: 4px;
+        background-color: #DFAD2E;
+        cursor: pointer;
+        &:hover{
+            background-color: #221A0D;
+            color: #DFAD2E;
+        }
+        &:disabled{
+            border-color: #555;
+            background-color: #CCC;
+            color:#555;
+            cursor: no-drop;
+        }
+    }
+}
