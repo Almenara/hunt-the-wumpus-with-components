@@ -1,0 +1,33 @@
+#game-stats{
+    width: 400px;
+    height: 80px;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    #wumpus-hunted{
+        position: relative;
+        border: 5px solid #221A0D;
+        border-radius: 50px;
+        &::after{
+            position: absolute;
+            content: "";
+            width: 90px;
+            background-color: #221A0D;
+            height: 5px;    
+            width: 83px;
+            transform: rotate(45deg);
+            top: 37px;
+            left: 0px;
+        }
+    }
+    .icon{
+        display: inline-block;
+        height: 80px;
+        width: 80px;
+        text-align: center;
+        line-height: 100px;
+        font-size: 60px;
+    }
+}

@@ -1,13 +1,27 @@
 #board{
     border-collapse: separate;
     border-spacing: 0;
-    border: 1px solid #DFAD2E;
+    border: 2px solid #DFAD2E;
     margin-bottom: 20px;
     background-color: #7d6d41;
+    box-shadow: inset 0px 0px 0px 1px rgba(223,173,46,1);
     border-radius: 20px;
     width: max-content;
     overflow: hidden;
     .row{
         display: flex;
+        &:last-child{
+            app-cell:first-child{
+                position: relative;
+                &::before{
+                    position: absolute;
+                    font-size: 60px;
+                    content: "🚪";
+                    top: 17px;
+                    left: 20px;
+    
+                }
+            }
+        }
     }
 }
