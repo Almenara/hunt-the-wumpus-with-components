@@ -135,6 +135,9 @@ export class ControlsComponent implements OnDestroy, OnInit {
       else if(!this.game.hasGold && this.gameService.heroIsAtExit()){
         this.game.gameMessage = "Get the gold to get out";
       }
+      else if(!this.game.hasGold && !this.gameService.heroIsAtExit()){
+        this.game.gameMessage = "Get the gold to get out";
+      }
       else if(!this.gameService.heroIsAtExit()){
         this.game.gameMessage = "Go to door";
       }

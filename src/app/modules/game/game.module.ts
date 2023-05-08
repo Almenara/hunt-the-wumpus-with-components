@@ -6,6 +6,7 @@ import { CellComponent } from './cell/cell.component';
 import { GameComponent } from './game.component';
 import { ControlsComponent } from './controls/controls.component';
 import { ScorerComponent } from './scorer/scorer.component';
+import { MessagesComponent } from './messages/messages.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ScorerComponent } from './scorer/scorer.component';
     BoardComponent,
     CellComponent,
     ControlsComponent,
-    ScorerComponent
+    ScorerComponent,
+    MessagesComponent
   ],
   imports: [
     CommonModule
