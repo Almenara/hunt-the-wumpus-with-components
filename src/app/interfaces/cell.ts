@@ -4,6 +4,6 @@ export interface Cell {
 
     id      : number;
     shown   : boolean;
-    content : undefined | Content[];
+    content : Content[];
     hero    : boolean;
 }
