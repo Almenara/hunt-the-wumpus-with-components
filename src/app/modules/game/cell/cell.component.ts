@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Cell } from 'src/app/interfaces/cell';
-import { Content } from 'src/app/interfaces/content';
+import { Directions } from 'src/app/interfaces/enums/directions.enum';
 
 @Component({
   selector: 'app-cell',
@@ -9,6 +9,8 @@ import { Content } from 'src/app/interfaces/content';
 })
 export class CellComponent implements OnInit{
   @Input() cell! : Cell;
+  @Input() heroDirection! : Directions;
+  @Input() arrows! : number;
 
   constructor(){
   }

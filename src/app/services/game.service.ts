@@ -4,6 +4,7 @@ import { Game } from '../interfaces/game';
 import { Router } from '@angular/router';
 import { Cell } from '../interfaces/cell';
 import { types } from '../interfaces/enums/types.enum';
+import { Directions } from '../interfaces/enums/directions.enum';
 
 
 @Injectable({
@@ -11,31 +12,39 @@ import { types } from '../interfaces/enums/types.enum';
 })
 export class GameService {
 
+  private gameSubject = new Subject<Game>();
+  public game$ = this.gameSubject.asObservable();
   public game! : Game;
 
-  
   constructor(
     private router : Router,
     ) {}
   setGame(newGame: Game){
     this.game = newGame;
     this.game.board = []
+    this.game.heroDirection = Directions.UP;
+    this.game.totalMoves = 0;
     if(this.game){
       this.createBoard()
+      this.emitGame(this.game)
     }
     else this.router.navigate(['start'])
   }
 
+  emitGame(game: Game) {
+    this.gameSubject.next(game);
+  }
+
   createBoard(){
-    for(let i = 0; i < this.game.cells; i++){
+    for(let i:number = 0; i < this.game.cells; i++){
 
         let row: Cell[] = [];
 
         for(let e:number = 1; e < this.game.cells + 1 ; e++){
-        
+            let shown = i == this.game.cells - 1 && e - 1 == 0 ? true : false;
             row.push({
               id      : e + (i * this.game.cells),
-              shown   : false,
+              shown   : shown,
               content : [],
               hero    : false
             });
@@ -48,7 +57,10 @@ export class GameService {
     
     this.addHeroOnStartCell();
     this.addGameElementsToBoard();
-    
+  }
+
+  gameStarted(){
+    this.emitGame(this.game)
   }
 
   addHeroOnStartCell(){
@@ -90,6 +102,7 @@ export class GameService {
               name: 'monster', 
               icon: '👹'
           });
+          this.game.monsterPosition = {row, col};
           this.addMonsterTracks(row,col);
       }
       else this.addMonsterToBoard();
@@ -163,5 +176,14 @@ export class GameService {
   getRandomCell():number{
     return Math.floor(Math.random() * this.game.cells)
   }
+  
+  gameOver(row:number, col:number){
+    this.game.heroDeath = true;
+    this.game.board[this.game.heroPosition.row][this.game.heroPosition.col].shown=true
+    this.game.gameMessage = "You died!"
+  }
 
+  heroIsAtExit(){
+    return this.game.heroPosition.row == this.game.cells - 1 && this.game.heroPosition.col == 0;
+  }
 }
