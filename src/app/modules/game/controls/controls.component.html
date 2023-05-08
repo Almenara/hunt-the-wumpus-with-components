@@ -1,0 +1,14 @@
+<div id="controls">
+    <div class="buttons-container">
+        <button type="button" (click)="turnLeftHero()">TURN LEFT</button>
+        <button type="button" (click)="moveHero()">MOVE</button>
+        <button type="button" (click)="turnRightHero()">TURN RIGHT</button>
+    </div>
+    <div class="buttons-container" *ngIf="game.arrows || !game.hasGold">
+        <button type="button" *ngIf="game.arrows" (click)="shot()">SHOT ARROW</button>
+        <button type="button" *ngIf="!game.hasGold" (click)="getGold()">GET GOLD</button>
+    </div>
+    <div class="buttons-container">
+        <button type="button" (click)="exit()">EXIT</button>    
+    </div>
+</div>
