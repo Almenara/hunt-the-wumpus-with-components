@@ -27,15 +27,15 @@ export class GameService {
   }
 
   createBoard(){
-    for(let i = 0; i < this.game.cells; i++){
+    for(let i:number = 0; i < this.game.cells; i++){
 
         let row: Cell[] = [];
 
         for(let e:number = 1; e < this.game.cells + 1 ; e++){
-        
+            let shown = i == this.game.cells - 1 && e - 1 == 0 ? true : false;
             row.push({
               id      : e + (i * this.game.cells),
-              shown   : false,
+              shown   : shown,
               content : [],
               hero    : false
             });
