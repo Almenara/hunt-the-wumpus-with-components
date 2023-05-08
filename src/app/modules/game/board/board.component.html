@@ -1,1 +1,5 @@
-<p>board works!</p>
+<div id="board">
+    <div class="row" *ngFor="let row of board">
+        <app-cell *ngFor="let cell of row"></app-cell>
+    </div>
+</div>

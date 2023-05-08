@@ -1,0 +1,13 @@
+#board{
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #DFAD2E;
+    margin-bottom: 20px;
+    background-color: #7d6d41;
+    border-radius: 20px;
+    width: max-content;
+    overflow: hidden;
+    .row{
+        display: flex;
+    }
+}
