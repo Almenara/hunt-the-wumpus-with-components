@@ -1,7 +1,6 @@
 import { GameService } from './../../services/game.service';
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Cell } from 'src/app/interfaces/cell';
 
 import { game } from 'src/app/models/game.model';
 
@@ -13,6 +12,7 @@ import { game } from 'src/app/models/game.model';
 export class GameComponent implements OnInit{
 
   game!:game;
+  
   @Output() gameOver = new EventEmitter<boolean>();
 
   constructor(

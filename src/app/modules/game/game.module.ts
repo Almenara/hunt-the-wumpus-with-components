@@ -6,7 +6,6 @@ import { CellComponent } from './cell/cell.component';
 import { GameComponent } from './game.component';
 
 
-
 @NgModule({
   declarations: [
     GameComponent,

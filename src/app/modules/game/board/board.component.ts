@@ -18,6 +18,6 @@ export class BoardComponent implements OnInit{
       this.board = gameService.game.board;
   }
   ngOnInit(){
-    console.log(this.gameService.game.board)
+    
   }
 }
