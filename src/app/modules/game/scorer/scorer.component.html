@@ -1,1 +1,6 @@
-<p>scorer works!</p>
+<div id="game-stats">
+    <span>Moves: {{moves}}</span>
+    <span>Arrows: {{arrows}}</span>
+    <span class="icon" *ngIf="hasGold">💰</span>
+    <span id="wumpus-hunted" class="icon" *ngIf="monsterDeath">👹</span>
+</div>

@@ -1,4 +1,4 @@
-<div id="controls">
+<div id="controls" *ngIf="!game.heroDeath && !game.playerWin; else return">
     <div class="buttons-container">
         <button type="button" (click)="turnLeftHero()">TURN LEFT</button>
         <button type="button" (click)="moveHero()">MOVE</button>
@@ -12,3 +12,10 @@
         <button type="button" (click)="exit()">EXIT</button>    
     </div>
 </div>
+<ng-template #return>
+    <div id="controls">
+        <button type="button" (click)="gameOver()">RETURN</button>  
+    </div>
+</ng-template>
+
+

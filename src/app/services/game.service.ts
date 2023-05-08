@@ -14,16 +14,22 @@ export class GameService {
 
   private gameSubject = new Subject<Game>();
   public game$ = this.gameSubject.asObservable();
-  public game! : Game;
+  public game! : Game ;
 
   constructor(
     private router : Router,
     ) {}
   setGame(newGame: Game){
-    this.game = newGame;
-    this.game.board = []
+
+    this.game               = newGame;
+    this.game.board         = []
     this.game.heroDirection = Directions.UP;
-    this.game.totalMoves = 0;
+    this.game.totalMoves    = 0;
+    this.game.hasGold       = false;
+    this.game.monsterDeath  = false;
+    this.game.playerWin     = false;
+    this.game.heroDeath     = false;
+    
     if(this.game){
       this.createBoard()
       this.emitGame(this.game)

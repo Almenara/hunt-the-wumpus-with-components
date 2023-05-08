@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { game } from 'src/app/models/game.model';
+import { Game } from 'src/app/interfaces/game';
 import { GameService } from 'src/app/services/game.service';
 
 @Component({
@@ -9,9 +9,9 @@ import { GameService } from 'src/app/services/game.service';
   templateUrl: './starter.component.html',
   styleUrls: ['./starter.component.scss']
 })
-export class StarterComponent implements OnInit{
+export class StarterComponent {
   public gameStarted : boolean = false;
-  public game! :       game | undefined;
+  public game! :       Game | undefined;
   public maxHoles :    number = 2;
 
   public gameOptionsForm: FormGroup = this.fb.group({
@@ -36,11 +36,4 @@ export class StarterComponent implements OnInit{
     this.router.navigate(['game'])
   }
 
-  gameOver(over: boolean){
-    this.game = undefined;
-    this.gameStarted = false;
-  }
-  ngOnInit(): void {
-    this.startGame();
-  }
 }
